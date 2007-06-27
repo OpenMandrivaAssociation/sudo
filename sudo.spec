@@ -9,7 +9,7 @@
 Summary:	Allows command execution as root for specified users
 Name:		sudo
 Version:	1.6.8p12
-Release:	%mkrel 7
+Release:	%mkrel 8
 Epoch:		1
 License:	GPL
 Group:		System/Base
@@ -45,17 +45,18 @@ their work done.
 %patch1 -p1 -b .nss_ldap
 
 %build
+%serverbuild
 %configure --with-logging=both \
            --with-logpath=/var/log/sudo.log \
-	       --with-editor=/bin/vi \
+	   --with-editor=/bin/vi \
            --enable-log-host \
            --disable-log-wrap \
            --with-pam \
            --with-env-editor \
            --with-noexec=no \
            --with-ldap \
-	       --with-secure-path="/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin" \
-           CFLAGS="$RPM_OPT_FLAGS -D_GNU_SOURCE -fstack-protector"
+           --with-secure-path="/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin" \
+           CFLAGS="$RPM_OPT_FLAGS -D_GNU_SOURCE"
 %make
 
 %install
