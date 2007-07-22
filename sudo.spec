@@ -22,7 +22,6 @@ Source:		ftp://ftp.courtesan.com:/pub/sudo/%name-%version.tar.gz
 Source1:	ftp://ftp.courtesan.com:/pub/sudo/%name-%version.tar.gz.sig
 Source2:	sudo.pamd
 %endif
-Patch0:         sudo-1.6.8p8-default_whitelist.patch
 Patch1:         sudo-1.6.8_p9-nss_ldap.patch
 BuildRequires:  pam-devel
 BuildRequires:  openldap-devel
@@ -41,7 +40,6 @@ their work done.
 %setup -q -n %name-%version
 %endif
 
-%patch0 -p0 -b .default_whitelist
 %patch1 -p1 -b .nss_ldap
 
 %build
@@ -110,5 +108,3 @@ rm -rf %{buildroot}
 %attr(0111,root,root) %{_sbindir}/visudo
 %{_mandir}/*/*
 /var/run/sudo
-
-
