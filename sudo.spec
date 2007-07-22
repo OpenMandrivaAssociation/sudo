@@ -8,8 +8,8 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.6.8p12
-Release:	%mkrel 8
+Version:	1.6.9
+Release:	%mkrel 1
 Epoch:		1
 License:	GPL
 Group:		System/Base
@@ -56,7 +56,7 @@ their work done.
            --with-noexec=no \
            --with-ldap \
            --with-secure-path="/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin" \
-           CFLAGS="$RPM_OPT_FLAGS -D_GNU_SOURCE"
+           CFLAGS="%{optflags} -D_GNU_SOURCE"
 %make
 
 %install
@@ -99,7 +99,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc BUGS CHANGES HISTORY INSTALL PORTING README README.LDAP RUNSON TODO
+%doc BUGS CHANGES HISTORY INSTALL PORTING README README.LDAP TODO
 %doc TROUBLESHOOTING UPGRADE sample.sudoers
 %attr(0440,root,root) %config(noreplace) %{_sysconfdir}/sudoers
 %config(noreplace) %{_sysconfdir}/logrotate.d/sudo
