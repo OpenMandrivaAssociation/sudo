@@ -9,7 +9,7 @@
 Summary:	Allows command execution as root for specified users
 Name:		sudo
 Version:	1.6.9
-Release:	%mkrel 1
+Release:	%mkrel 2
 Epoch:		1
 License:	GPL
 Group:		System/Base
@@ -54,7 +54,7 @@ their work done.
            --with-noexec=no \
            --with-ldap \
            --with-secure-path="/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin" \
-           CFLAGS="%{optflags} -D_GNU_SOURCE"
+           CFLAGS="$RPM_OPT_FLAGS -D_GNU_SOURCE"
 %make
 
 %install
