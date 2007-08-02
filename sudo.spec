@@ -8,8 +8,8 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.6.9p1
-Release:	%mkrel 2
+Version:	1.6.9p2
+Release:	%mkrel 1
 Epoch:		1
 License:	GPL
 Group:		System/Base
@@ -53,7 +53,7 @@ their work done.
            --with-env-editor \
            --with-noexec=no \
            --with-ldap \
-           --with-secure-path="/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin" \
+           --with-secure-path="/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin" \
            CFLAGS="$RPM_OPT_FLAGS -D_GNU_SOURCE"
 %make
 
