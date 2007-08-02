@@ -8,7 +8,7 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.6.9p2
+Version:	1.6.9p3
 Release:	%mkrel 1
 Epoch:		1
 License:	GPL
