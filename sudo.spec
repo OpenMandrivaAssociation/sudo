@@ -8,24 +8,24 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.6.9p3
+Version:	1.6.9p4
 Release:	%mkrel 1
 Epoch:		1
 License:	GPL
 Group:		System/Base
-URL:		http://www.courtesan.com/sudo
+URL:		http://www.sudo.ws/sudo
 %if %pre
-Source:		ftp://ftp.courtesan.com:/pub/sudo/%name-%version%pre.tar.gz
-Source1:	ftp://ftp.courtesan.com:/pub/sudo/%name-%version%pre.tar.gz.sig
+Source:		http://www.sudo.ws/sudo/dist/%name-%version%pre.tar.gz
+Source1:	http://www.sudo.ws/sudo/dist/%name-%version%pre.tar.gz.sig
 %else
-Source:		ftp://ftp.courtesan.com:/pub/sudo/%name-%version.tar.gz
-Source1:	ftp://ftp.courtesan.com:/pub/sudo/%name-%version.tar.gz.sig
+Source:		http://www.sudo.ws/sudo/dist/%name-%version.tar.gz
+Source1:	http://www.sudo.ws/sudo/dist/%name-%version.tar.gz.sig
 Source2:	sudo.pamd
 %endif
 Patch1:         sudo-1.6.8_p9-nss_ldap.patch
 BuildRequires:  pam-devel
 BuildRequires:  openldap-devel
-BuildRoot:	    %_tmppath/%name-%version
+BuildRoot:	%_tmppath/%name-%version
 
 %description
 Sudo is a program designed to allow a sysadmin to give limited root
