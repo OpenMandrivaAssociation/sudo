@@ -97,7 +97,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc BUGS CHANGES HISTORY INSTALL PORTING README README.LDAP TODO
+%doc BUGS CHANGES HISTORY INSTALL PORTING README README.LDAP
 %doc TROUBLESHOOTING UPGRADE sample.sudoers
 %attr(0440,root,root) %config(noreplace) %{_sysconfdir}/sudoers
 %config(noreplace) %{_sysconfdir}/logrotate.d/sudo
