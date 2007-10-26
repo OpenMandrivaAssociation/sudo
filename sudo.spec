@@ -6,11 +6,11 @@
 %define _sysconfdir /etc
 %endif
 
-Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.6.9p6
+Version:	1.6.9p7
 Release:	%mkrel 1
 Epoch:		1
+Summary:	Allows command execution as root for specified users
 License:	GPL
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
@@ -20,12 +20,12 @@ Source1:	http://www.sudo.ws/sudo/dist/%name-%version%pre.tar.gz.sig
 %else
 Source:		http://www.sudo.ws/sudo/dist/%name-%version.tar.gz
 Source1:	http://www.sudo.ws/sudo/dist/%name-%version.tar.gz.sig
-Source2:	sudo.pamd
 %endif
-Patch1:         sudo-1.6.8_p9-nss_ldap.patch
+Source2:	sudo.pamd
+Patch1:		sudo-1.6.8_p9-nss_ldap.patch
 BuildRequires:  pam-devel
 BuildRequires:  openldap-devel
-BuildRoot:	%_tmppath/%name-%version
+BuildRoot:	%_tmppath/%name-%version-%{release}-root
 
 %description
 Sudo is a program designed to allow a sysadmin to give limited root
@@ -44,8 +44,9 @@ their work done.
 
 %build
 %serverbuild
-%configure --with-logging=both \
-           --with-logpath=/var/log/sudo.log \
+%configure2_5x \
+           --with-logging=both \
+           --with-logpath=%{_logdir}/sudo.log \
 	   --with-editor=/bin/vi \
            --enable-log-host \
            --disable-log-wrap \
@@ -53,8 +54,8 @@ their work done.
            --with-env-editor \
            --with-noexec=no \
            --with-ldap \
-           --with-secure-path="/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin" \
-           CFLAGS="$RPM_OPT_FLAGS -D_GNU_SOURCE"
+           --with-secure-path="/sbin:%{_sbindir}:/bin:%{_bindir}:/usr/local/bin:/usr/local/sbin" \
+           CFLAGS="%{optflags} -D_GNU_SOURCE"
 %make
 
 %install
@@ -73,22 +74,22 @@ make prefix=%{buildroot}/usr sysconfdir=%{buildroot}/etc \
 install_uid=$UID install_gid=$(id -g) sudoers=uid=$UID sudoers_gid=$(id -g)
 %endif
 
-mkdir -p %{buildroot}/var/run/sudo
-chmod 700 %{buildroot}/var/run/sudo
+mkdir -p %{buildroot}%{_var}/run/sudo
+chmod 700 %{buildroot}%{_var}/run/sudo
 
 install -D -m644 %{SOURCE2} %{buildroot}/etc/pam.d/sudo
 
 # Installing logrotated file
 mkdir -p %{buildroot}/etc/logrotate.d
 cat <<END >%{buildroot}/etc/logrotate.d/sudo
-/var/log/sudo.log {
+%{_logdir}/sudo.log {
     missingok
     monthly
     compress
 }
 END
-chmod 755 %{buildroot}/usr/bin/sudo
-chmod 755 %{buildroot}/usr/sbin/visudo
+chmod 755 %{buildroot}%{_bindir}/sudo
+chmod 755 %{buildroot}%{_sbindir}/visudo
 
 install -m 755 sudoers2ldif %{buildroot}%{_bindir}
 
@@ -107,4 +108,4 @@ rm -rf %{buildroot}
 %attr(4111,root,root) %{_bindir}/sudoedit
 %attr(0111,root,root) %{_sbindir}/visudo
 %{_mandir}/*/*
-/var/run/sudo
+%{_var}/run/sudo
