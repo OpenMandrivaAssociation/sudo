@@ -1,5 +1,5 @@
 # use fakeroot -ba sudo.spec to build!
-%define pre 0
+%define pre %nil 
 
 %define build_71 0
 %if %build_71
@@ -7,20 +7,15 @@
 %endif
 
 Name:		sudo
-Version:	1.6.9p7
+Version:	1.6.9p8
 Release:	%mkrel 1
 Epoch:		1
 Summary:	Allows command execution as root for specified users
 License:	GPL
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
-%if %pre
-Source:		http://www.sudo.ws/sudo/dist/%name-%version%pre.tar.gz
-Source1:	http://www.sudo.ws/sudo/dist/%name-%version%pre.tar.gz.sig
-%else
-Source:		http://www.sudo.ws/sudo/dist/%name-%version.tar.gz
-Source1:	http://www.sudo.ws/sudo/dist/%name-%version.tar.gz.sig
-%endif
+Source:		http://www.sudo.ws/sudo/dist/%name-%version%{?pre}.tar.gz
+Source1:	http://www.sudo.ws/sudo/dist/%name-%version%{?pre}.tar.gz.sig
 Source2:	sudo.pamd
 Patch1:		sudo-1.6.8_p9-nss_ldap.patch
 BuildRequires:  pam-devel
@@ -34,11 +29,7 @@ to give as few privileges as possible but still allow people to get
 their work done.
 
 %prep
-%if %pre
-%setup -q -n %name-%version%pre
-%else
-%setup -q -n %name-%version
-%endif
+%setup -q -n %name-%version%{?pre}
 
 %patch1 -p1 -b .nss_ldap
 
