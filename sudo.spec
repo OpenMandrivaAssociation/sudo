@@ -20,7 +20,6 @@ Source2:	sudo.pamd
 Patch1:		sudo-1.6.8_p9-nss_ldap.patch
 BuildRequires:  pam-devel
 BuildRequires:  openldap-devel
-BuildRoot:	%_tmppath/%name-%version-%{release}-root
 
 %description
 Sudo is a program designed to allow a sysadmin to give limited root
