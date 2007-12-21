@@ -8,7 +8,7 @@
 
 Name:		sudo
 Version:	1.6.9p8
-Release:	%mkrel 2
+Release:	%mkrel 3
 Epoch:		1
 Summary:	Allows command execution as root for specified users
 License:	GPL
@@ -20,6 +20,7 @@ Source2:	sudo.pamd
 Patch1:		sudo-1.6.8_p9-nss_ldap.patch
 BuildRequires:  pam-devel
 BuildRequires:  openldap-devel
+Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Sudo is a program designed to allow a sysadmin to give limited root
