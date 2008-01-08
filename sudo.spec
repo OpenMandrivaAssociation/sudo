@@ -7,11 +7,11 @@
 %endif
 
 Name:		sudo
-Version:	1.6.9p10
+Version:	1.6.9p11
 Release:	%mkrel 1
 Epoch:		1
 Summary:	Allows command execution as root for specified users
-License:	GPL
+License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
 Source:		http://www.sudo.ws/sudo/dist/%name-%version%{?pre}.tar.gz
@@ -89,7 +89,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc BUGS CHANGES HISTORY INSTALL PORTING README README.LDAP
+%doc BUGS CHANGES HISTORY PORTING README README.LDAP
 %doc TROUBLESHOOTING UPGRADE sample.sudoers
 %attr(0440,root,root) %config(noreplace) %{_sysconfdir}/sudoers
 %config(noreplace) %{_sysconfdir}/logrotate.d/sudo
