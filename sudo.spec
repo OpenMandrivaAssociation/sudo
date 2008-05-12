@@ -7,7 +7,7 @@
 %endif
 
 Name:		sudo
-Version:	1.6.9p15
+Version:	1.6.9p16
 Release:	%mkrel 1
 Epoch:		1
 Summary:	Allows command execution as root for specified users
@@ -89,6 +89,13 @@ chmod 755 %{buildroot}%{_sbindir}/visudo
 
 install -m 755 sudoers2ldif %{buildroot}%{_bindir}
 
+# (tpg) create the missing log file
+mkdir -p %{buildroot}%{_logdir}
+touch %{buildroot}%{_logdir}/sudo.log
+
+%post
+%create_ghostfile %{buildroot}%{_logdir}/sudo.log root root 600
+
 %clean
 rm -rf %{buildroot}
 
@@ -103,5 +110,6 @@ rm -rf %{buildroot}
 %attr(4111,root,root) %{_bindir}/sudo
 %attr(4111,root,root) %{_bindir}/sudoedit
 %attr(0111,root,root) %{_sbindir}/visudo
+%ghost %{_logdir}/sudo.log
 %{_mandir}/*/*
 %{_var}/run/sudo
