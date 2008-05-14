@@ -94,7 +94,7 @@ mkdir -p %{buildroot}%{_logdir}
 touch %{buildroot}%{_logdir}/sudo.log
 
 %post
-%create_ghostfile %{buildroot}%{_logdir}/sudo.log root root 600
+%create_ghostfile %{_logdir}/sudo.log root root 600
 
 %clean
 rm -rf %{buildroot}
