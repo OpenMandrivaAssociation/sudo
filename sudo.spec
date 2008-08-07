@@ -8,7 +8,7 @@
 
 Name:		sudo
 Version:	1.6.9p16
-Release:	%mkrel 2
+Release:	%mkrel 3
 Epoch:		1
 Summary:	Allows command execution as root for specified users
 License:	GPLv2+
