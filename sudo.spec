@@ -7,8 +7,8 @@
 %endif
 
 Name:		sudo
-Version:	1.6.9p16
-Release:	%mkrel 3
+Version:	1.6.9p17
+Release:	%mkrel 1
 Epoch:		1
 Summary:	Allows command execution as root for specified users
 License:	GPLv2+
