@@ -7,7 +7,7 @@
 %endif
 
 Name:		sudo
-Version:	1.6.9p18
+Version:	1.7.0
 Release:	%mkrel 1
 Epoch:		1
 Summary:	Allows command execution as root for specified users
