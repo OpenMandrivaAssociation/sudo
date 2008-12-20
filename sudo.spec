@@ -17,11 +17,11 @@ URL:		http://www.sudo.ws/sudo
 Source0:	http://www.sudo.ws/sudo/dist/%name-%version%{?pre}.tar.gz
 Source1:	%{SOURCE0}.sig
 Source2:	sudo.pamd
-Patch1:		sudo-1.6.8_p9-nss_ldap.patch
 BuildRequires:	pam-devel
 BuildRequires:	openldap-devel
 BuildRequires:	bison
 BuildRequires:	groff-for-man
+Requires(pre):	openldap
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -32,8 +32,6 @@ their work done.
 
 %prep
 %setup -q -n %{name}-%{version}%{?pre}
-
-%patch1 -p1 -b .nss_ldap
 
 %build
 %serverbuild
@@ -50,6 +48,7 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 	--with-env-editor \
 	--with-noexec=no \
 	--with-ldap \
+	--with-ldap-conf-file=%{_sysconfdir}/openldap/ldap.conf \
 	--with-secure-path="/sbin:%{_sbindir}:/bin:%{_bindir}:/usr/local/bin:/usr/local/sbin"
 
 %make
@@ -101,7 +100,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc BUGS CHANGES HISTORY PORTING README README.LDAP
+%doc HISTORY PORTING README README.LDAP WHATSNEW
 %doc TROUBLESHOOTING UPGRADE sample.sudoers
 %attr(0440,root,root) %config(noreplace) %{_sysconfdir}/sudoers
 %config(noreplace) %{_sysconfdir}/logrotate.d/sudo
