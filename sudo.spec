@@ -8,7 +8,7 @@
 
 Name:		sudo
 Version:	1.7.0
-Release:	%mkrel 1
+Release:	%mkrel 2
 Epoch:		1
 Summary:	Allows command execution as root for specified users
 License:	GPLv2+
@@ -48,7 +48,7 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 	--with-env-editor \
 	--with-noexec=no \
 	--with-ldap \
-	--with-ldap-conf-file=%{_sysconfdir}/openldap/ldap.conf \
+	--with-ldap-conf-file=%{_sysconfdir}/ldap.conf \
 	--with-secure-path="/sbin:%{_sbindir}:/bin:%{_bindir}:/usr/local/bin:/usr/local/sbin"
 
 %make
