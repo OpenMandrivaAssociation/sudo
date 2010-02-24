@@ -1,5 +1,5 @@
 # use fakeroot -ba sudo.spec to build!
-%define pre p1
+%define pre p4
 
 %define build_71 0
 %if %build_71
@@ -8,7 +8,7 @@
 
 Name:		sudo
 Version:	1.7.2
-Release:	%mkrel -c p1 1
+Release:	%mkrel -c p4 1
 Epoch:		1
 Summary:	Allows command execution as root for specified users
 License:	GPLv2+
