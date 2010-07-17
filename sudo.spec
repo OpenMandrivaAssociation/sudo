@@ -1,5 +1,5 @@
 # use fakeroot -ba sudo.spec to build!
-%define pre p7
+%define pre %nil
 
 %define build_71 0
 %if %build_71
@@ -7,8 +7,8 @@
 %endif
 
 Name:		sudo
-Version:	1.7.2
-Release:	%mkrel -c p7 1
+Version:	1.7.3
+Release:	%mkrel 1
 Epoch:		1
 Summary:	Allows command execution as root for specified users
 License:	GPLv2+
@@ -43,7 +43,6 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 	--with-logpath=%{_logdir}/sudo.log \
 	--with-editor=/bin/vi \
 	--enable-log-host \
-	--disable-log-wrap \
 	--with-pam \
 	--with-env-editor \
 	--with-noexec=no \
@@ -107,6 +106,7 @@ rm -rf %{buildroot}
 %config(noreplace) %{_sysconfdir}/pam.d/sudo
 %{_bindir}/sudoers2ldif
 %attr(4111,root,root) %{_bindir}/sudo
+%attr(4111,root,root) %{_bindir}/sudoreplay
 %attr(4111,root,root) %{_bindir}/sudoedit
 %attr(0111,root,root) %{_sbindir}/visudo
 %ghost %{_logdir}/sudo.log
