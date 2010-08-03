@@ -7,7 +7,7 @@
 %endif
 
 Name:		sudo
-Version:	1.7.3
+Version:	1.7.4
 Release:	%mkrel 1
 Epoch:		1
 Summary:	Allows command execution as root for specified users
@@ -15,7 +15,7 @@ License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
 Source0:	http://www.sudo.ws/sudo/dist/%name-%version%{?pre}.tar.gz
-Source1:	%{SOURCE0}.sig
+Source1:	http://www.sudo.ws/sudo/dist/%name-%version%{?pre}.tar.gz.sig
 Source2:	sudo.pamd
 BuildRequires:	pam-devel
 BuildRequires:	openldap-devel
@@ -99,7 +99,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc HISTORY PORTING README README.LDAP WHATSNEW
+%doc HISTORY PORTING README README.LDAP
 %doc TROUBLESHOOTING UPGRADE sample.sudoers
 %attr(0440,root,root) %config(noreplace) %{_sysconfdir}/sudoers
 %config(noreplace) %{_sysconfdir}/logrotate.d/sudo
