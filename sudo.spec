@@ -8,7 +8,7 @@
 
 Name:		sudo
 Version:	1.7.4
-Release:	%mkrel 1
+Release:	%mkrel 2
 Epoch:		1
 Summary:	Allows command execution as root for specified users
 License:	GPLv2+
@@ -91,6 +91,8 @@ install -m 755 sudoers2ldif %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_logdir}
 touch %{buildroot}%{_logdir}/sudo.log
 
+mkdir -p %{buildroot}/etc/sudoers.d/
+
 %post
 %create_ghostfile %{_logdir}/sudo.log root root 600
 
@@ -102,6 +104,7 @@ rm -rf %{buildroot}
 %doc HISTORY PORTING README README.LDAP
 %doc TROUBLESHOOTING UPGRADE sample.sudoers
 %attr(0440,root,root) %config(noreplace) %{_sysconfdir}/sudoers
+%dir %{_sysconfdir}/sudoers.d/
 %config(noreplace) %{_sysconfdir}/logrotate.d/sudo
 %config(noreplace) %{_sysconfdir}/pam.d/sudo
 %{_bindir}/sudoers2ldif
