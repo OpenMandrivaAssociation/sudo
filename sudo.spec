@@ -1,11 +1,6 @@
 # use fakeroot -ba sudo.spec to build!
 %define pre p4
 
-%define build_71 0
-%if %build_71
-%define _sysconfdir /etc
-%endif
-
 Name:		sudo
 Version:	1.7.4
 Release:	%mkrel 2.%{?pre}.1
@@ -54,19 +49,10 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 
 %install
 rm -rf %{buildroot}
+
 mkdir -p %{buildroot}/usr
 
-%if %build_71
-make prefix=%{buildroot}/usr sysconfdir=%{buildroot}/etc \
- install_uid=$UID install_gid=$(id -g) sudoers=uid=$UID sudoers_gid=$(id -g) \
- install
-make prefix=%{buildroot}/usr sysconfdir=%{buildroot}/etc \
- install_uid=$UID install_gid=$(id -g) sudoers=uid=$UID sudoers_gid=$(id -g) \
- install-sudoers
-%else
-%makeinstall_std \
-install_uid=$UID install_gid=$(id -g) sudoers=uid=$UID sudoers_gid=$(id -g)
-%endif
+%makeinstall_std install_uid=$UID install_gid=$(id -g) sudoers=uid=$UID sudoers_gid=$(id -g)
 
 mkdir -p %{buildroot}%{_var}/run/sudo
 chmod 700 %{buildroot}%{_var}/run/sudo
