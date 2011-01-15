@@ -3,7 +3,7 @@
 
 Name:		sudo
 Version:	1.7.4
-Release:	%mkrel 2.%{?pre}.2
+Release:	%mkrel 2.%{?pre}.3
 Epoch:		1
 Summary:	Allows command execution as root for specified users
 License:	GPLv2+
