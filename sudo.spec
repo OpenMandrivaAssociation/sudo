@@ -1,5 +1,5 @@
 # use fakeroot -ba sudo.spec to build!
-%define plevel p5
+%define plevel p6
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
@@ -12,7 +12,7 @@ URL:		http://www.sudo.ws/sudo
 Source0:	http://www.sudo.ws/sudo/dist/%name-%version.tar.gz
 Source1:	http://www.sudo.ws/sudo/dist/%name-%version.tar.gz.sig
 Source2:	sudo.pamd
-Source3:	sudo-1.7.2p4-sudoers
+Source3:	sudo-1.7.4p4-sudoers
 Patch1:		sudo-1.6.7p5-strip.patch
 Patch2:		sudo-1.7.2p1-envdebug.patch
 Patch3:		sudo-1.7.4p3-m4path.patch
