@@ -1,25 +1,23 @@
 # use fakeroot -ba sudo.spec to build!
-%define pre p4
+%define plevel p5
 
-Name:		sudo
-Version:	1.7.4
-Release:	%mkrel 2.%{?pre}.3
-Epoch:		1
 Summary:	Allows command execution as root for specified users
+Name:		sudo
+Version:	1.7.4%{?plevel}
+Release:	%mkrel 1
+Epoch:		1
 License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
-Source0:	http://www.sudo.ws/sudo/dist/%name-%version%{?pre}.tar.gz
-Source1:	http://www.sudo.ws/sudo/dist/%name-%version%{?pre}.tar.gz.sig
+Source0:	http://www.sudo.ws/sudo/dist/%name-%version.tar.gz
+Source1:	http://www.sudo.ws/sudo/dist/%name-%version.tar.gz.sig
 Source2:	sudo.pamd
-Source3:	sudo-1.7.2p2-sudoers
+Source3:	sudo-1.7.2p4-sudoers
 Patch1:		sudo-1.6.7p5-strip.patch
 Patch2:		sudo-1.7.2p1-envdebug.patch
 Patch3:		sudo-1.7.4p3-m4path.patch
-Patch4:		sudo-1.7.4p3-sudolist.patch
-Patch5:		sudo-1.7.4p4-getgrouplist.patch
-Patch6:		sudo-1.7.4p4-sudoi.patch
-Patch7:		sudo-1.7.4p4-auditconn.patch
+Patch4:		sudo-1.7.4p4-getgrouplist-fixed.patch
+Patch5:		sudo-1.7.4p4-sudoi.patch
 BuildRequires:	audit-devel
 BuildRequires:	bison
 BuildRequires:	groff-for-man
@@ -27,7 +25,7 @@ BuildRequires:	libcap-devel
 BuildRequires:	openldap-devel
 BuildRequires:	pam-devel
 Requires(pre):	openldap
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Sudo is a program designed to allow a sysadmin to give limited root
@@ -37,14 +35,12 @@ their work done.
 
 %prep
 
-%setup -q -n %{name}-%{version}%{?pre}
+%setup -q -n %{name}-%{version}
 %patch1 -p1 -b .strip
 %patch2 -p1 -b .envdebug
 %patch3 -p1 -b .m4path
-%patch4 -p1 -b .sudolist
-%patch5 -p1 -b .getgrouplist
-%patch6 -p0 -b .sudoi
-%patch7 -p1 -b .auditconn
+%patch4 -p1 -b .getgrouplist-fixed
+%patch5 -p0 -b .sudoi
 
 %build
 # handle newer autoconf
