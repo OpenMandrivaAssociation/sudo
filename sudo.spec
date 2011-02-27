@@ -4,7 +4,7 @@
 Summary:	Allows command execution as root for specified users
 Name:		sudo
 Version:	1.7.4%{?plevel}
-Release:	%mkrel 1
+Release:	%mkrel 2
 Epoch:		1
 License:	GPLv2+
 Group:		System/Base
