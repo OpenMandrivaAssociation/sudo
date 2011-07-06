@@ -1,10 +1,10 @@
 # use fakeroot -ba sudo.spec to build!
-%define plevel p6
+%define plevel p2
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.7.4%{?plevel}
-Release:	%mkrel 3
+Version:	1.7.6%{?plevel}
+Release:	1
 Epoch:		1
 License:	GPLv2+
 Group:		System/Base
@@ -16,8 +16,6 @@ Source3:	sudo-1.7.4p4-sudoers
 Patch1:		sudo-1.6.7p5-strip.patch
 Patch2:		sudo-1.7.2p1-envdebug.patch
 Patch3:		sudo-1.7.4p3-m4path.patch
-Patch4:		sudo-1.7.4p4-getgrouplist-fixed.patch
-Patch5:		sudo-1.7.4p4-sudoi.patch
 BuildRequires:	audit-devel
 BuildRequires:	bison
 BuildRequires:	groff-for-man
@@ -34,13 +32,10 @@ to give as few privileges as possible but still allow people to get
 their work done.
 
 %prep
-
 %setup -q -n %{name}-%{version}
 %patch1 -p1 -b .strip
 %patch2 -p1 -b .envdebug
 %patch3 -p1 -b .m4path
-%patch4 -p1 -b .getgrouplist-fixed
-%patch5 -p0 -b .sudoi
 
 %build
 # handle newer autoconf
