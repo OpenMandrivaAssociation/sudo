@@ -161,7 +161,13 @@ rm sudo.lang sudoers.lang
 %attr(0111,root,root) %{_bindir}/sudoreplay
 %attr(0755,root,root) %{_sbindir}/visudo
 %ghost %{_logdir}/sudo.log
-%{_mandir}/*/*
+%{_mandir}/man8/sudoreplay.8*
+%{_mandir}/man8/visudo.8*
+%{_mandir}/man8/sudoedit.8*
+%{_mandir}/man8/sudo.8*
+%{_mandir}/man5/sudoers.ldap.5*
+%{_mandir}/man5/sudoers.5*
+
 %attr(0700,root,root) %dir %{_var}/db/sudo
 %attr(0750,root,root) %dir %{_logdir}/sudo-io
 %attr(0755,root,root) %dir %{_libdir}/sudo
