@@ -1,9 +1,9 @@
 # use fakeroot -ba sudo.spec to build!
-%define plevel p2
+%define plevel p1
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.8.3%{?plevel}
+Version:	1.8.5%{?plevel}
 Release:	1
 Epoch:		1
 License:	GPLv2+
@@ -16,7 +16,8 @@ Source3:	sudo-1.7.4p4-sudoers
 Patch1:		sudo-1.6.7p5-strip.patch
 Patch2:		sudo-1.7.2p1-envdebug.patch
 Patch3:		sudo-1.7.4p3-m4path.patch
-Patch4:		sudo-1.8.3-pipelist.patch
+Patch4:		sudo-1.8.5-pipelist.patch
+Patch5:		sudo-1.8.5-sssd-support.patch
 BuildRequires:	audit-devel
 BuildRequires:	bison
 BuildRequires:	groff-for-man
@@ -24,7 +25,6 @@ BuildRequires:	libcap-devel
 BuildRequires:	openldap-devel
 BuildRequires:	pam-devel
 Requires(pre):	openldap
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Sudo (superuser do) allows a system administrator to give certain users (or
@@ -52,6 +52,11 @@ plugins that use %{name}.
 %patch2 -p1 -b .envdebug
 %patch3 -p1 -b .m4path
 %patch4 -p1 -b .pipelist
+%patch5 -p1 -b .sssd-support
+
+# fix attribs
+find -name "Makefile.*" | xargs perl -pi -e "s|-m 0444|-m 0644|g"
+
 
 %build
 # handle newer autoconf
