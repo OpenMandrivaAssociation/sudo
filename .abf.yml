@@ -1,0 +1,5 @@
+sources:
+  "sudo-1.7.4p4-sudoers:"	a157c87c1ba8ce353005b6400fc6555b45ed2635
+  "sudo-1.8.5p1.tar.gz:"	8ac1e6b6cb04b2c2b6a1afd6db0fcb1f8a1eca79
+  "sudo-1.8.5p1.tar.gz.sig:"	932b33198071059c3ae1432ce87651eb301fea8d
+  "sudo.pamd:"	1c78f192788f8398ccb5abd63cc1049ca8cc9453
