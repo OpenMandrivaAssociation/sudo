@@ -9,8 +9,8 @@ Epoch:		1
 License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
-Source0:	http://www.sudo.ws/sudo/dist/%name-%version.tar.gz
-Source1:	http://www.sudo.ws/sudo/dist/%name-%version.tar.gz.sig
+Source0:	http://www.sudo.ws/sudo/dist/%{name}-%{version}.tar.gz
+Source1:	http://www.sudo.ws/sudo/dist/%{name}-%{version}.tar.gz.sig
 Source2:	sudo.pamd
 Source3:	sudo-1.7.4p4-sudoers
 Patch1:		sudo-1.6.7p5-strip.patch
@@ -21,7 +21,7 @@ Patch5:		sudo-1.8.5-sssd-support.patch
 BuildRequires:	audit-devel
 BuildRequires:	bison
 BuildRequires:	groff-for-man
-BuildRequires:	libcap-devel
+BuildRequires:	cap-devel
 BuildRequires:	openldap-devel
 BuildRequires:	pam-devel
 Requires(pre):	openldap
@@ -46,13 +46,12 @@ The %{name}-devel package contains header files developing sudo
 plugins that use %{name}.
 
 %prep
-
-%setup -q -n %{name}-%{version}
-%patch1 -p1 -b .strip
-%patch2 -p1 -b .envdebug
-%patch3 -p1 -b .m4path
-%patch4 -p1 -b .pipelist
-%patch5 -p1 -b .sssd-support
+%setup -q
+%patch1 -p1 -b .strip~
+%patch2 -p1 -b .envdebug~
+%patch3 -p1 -b .m4path~
+%patch4 -p1 -b .pipelist~
+%patch5 -p1 -b .sssd-support~
 
 # fix attribs
 find -name "Makefile.*" | xargs perl -pi -e "s|-m 0444|-m 0644|g"
@@ -70,7 +69,7 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 %configure2_5x \
 	--without-rpath \
 	--with-logging=both \
-        --with-logfac=authpriv \
+	--with-logfac=authpriv \
 	--with-logpath=%{_logdir}/sudo.log \
 	--with-editor=/bin/vi \
 	--enable-log-host \
@@ -79,11 +78,11 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 	--with-env-editor \
 	--with-noexec=no \
 	--with-linux-audit \
-        --with-ignore-dot \
-        --with-tty-tickets \
-        --libexecdir=%{_libdir}/sudo \
-        --with-plugindir=%{_libdir}/sudo \
-        --with-noexec=%{_libdir}/sudo/sudo_noexec.so \
+	--with-ignore-dot \
+	--with-tty-tickets \
+	--libexecdir=%{_libdir}/sudo \
+	--with-plugindir=%{_libdir}/sudo \
+	--with-noexec=%{_libdir}/sudo/sudo_noexec.so \
 	--with-ldap \
 	--with-ldap-conf-file=%{_sysconfdir}/ldap.conf \
 	--with-secure-path="/sbin:%{_sbindir}:/bin:%{_bindir}:/usr/local/bin:/usr/local/sbin" \
@@ -92,20 +91,17 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 %make
 
 %install
-rm -rf %{buildroot}
-
 install -d %{buildroot}/usr
 install -d %{buildroot}%{_sysconfdir}/logrotate.d
 install -d %{buildroot}%{_sysconfdir}/sudoers.d
-install -d %{buildroot}%{_sysconfdir}/pam.d
 install -d %{buildroot}%{_var}/db/sudo
 install -d %{buildroot}%{_logdir}/sudo
 install -d %{buildroot}%{_logdir}/sudo-io
 
 %makeinstall_std install_uid=`id -u` install_gid=`id -g` sudoers_uid=`id -u` sudoers_gid=`id -g`
 
-install -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/pam.d/sudo
-install -m0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/sudoers
+install -m0644 %{SOURCE2} -D %{buildroot}%{_sysconfdir}/pam.d/sudo
+install -m0644 %{SOURCE3} -D %{buildroot}%{_sysconfdir}/sudoers
 install -m0755 plugins/sudoers/sudoers2ldif %{buildroot}%{_bindir}
 
 # Installing logrotated file
@@ -118,7 +114,7 @@ cat <<END >%{buildroot}%{_sysconfdir}/logrotate.d/sudo
 END
 
 cat > %{buildroot}%{_sysconfdir}/pam.d/sudo << EOF
-#%PAM-1.0
+#%%PAM-1.0
 auth       include      system-auth
 account    include      system-auth
 password   include      system-auth
@@ -127,7 +123,7 @@ session    required     pam_limits.so
 EOF
 
 cat > %{buildroot}%{_sysconfdir}/pam.d/sudo-i << EOF
-#%PAM-1.0
+#%%PAM-1.0
 auth       include      sudo
 account    include      sudo
 password   include      sudo
@@ -142,17 +138,13 @@ chmod 755 %{buildroot}%{_sbindir}/*
 # (tpg) create the missing log file
 touch %{buildroot}%{_logdir}/sudo.log
 
-%find_lang sudo
-%find_lang sudoers
-
-cat sudo.lang sudoers.lang > sudo_all.lang
-rm sudo.lang sudoers.lang
+%find_lang sudo sudoers %{name}.lang
 
 %post
 /bin/chmod 0440 %{_sysconfdir}/sudoers || :
 %create_ghostfile %{_logdir}/sudo.log root root 600
 
-%files -f sudo_all.lang
+%files -f %{name}.lang
 %doc doc/LICENSE doc/HISTORY README README.LDAP
 %doc doc/TROUBLESHOOTING doc/UPGRADE doc/sample.* doc/schema.*
 %attr(0440,root,root) %config(noreplace) %{_sysconfdir}/sudoers
