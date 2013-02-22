@@ -81,7 +81,9 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 	--with-ldap-conf-file=%{_sysconfdir}/ldap.conf \
 	--with-secure-path="/sbin:%{_sbindir}:/bin:%{_bindir}:/usr/local/bin:/usr/local/sbin" \
 	--with-passprompt="[sudo] password for %p: " \
-	--with-sssd
+	--with-sssd \
+	--with-insults \
+	--with-all-insults
 
 %make
 
