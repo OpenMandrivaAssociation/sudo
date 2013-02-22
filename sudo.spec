@@ -49,17 +49,14 @@ plugins that use %{name}.
 %patch2 -p1 -b .envdebug~
 %patch3 -p1 -b .m4path~
 %patch4 -p1 -b .pipelist~
+# handle newer autoconf
+mv aclocal.m4 acinclude.m4
+autoreconf -fvi
 
 # fix attribs
 find -name "Makefile.*" | xargs perl -pi -e "s|-m 0444|-m 0644|g"
 
-
 %build
-# handle newer autoconf
-rm -f acsite.m4
-mv aclocal.m4 acinclude.m4
-autoreconf -fv --install
-
 %serverbuild
 export CFLAGS="%{optflags} -D_GNU_SOURCE"
 
