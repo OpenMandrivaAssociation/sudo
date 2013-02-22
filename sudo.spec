@@ -169,6 +169,5 @@ touch %{buildroot}%{_logdir}/sudo.log
 %{_libdir}/sudo/sudoers.so
 
 %files devel
-%doc plugins/{sample,sample_group}
 %{_includedir}/sudo_plugin.h
 %{_mandir}/man8/sudo_plugin.8*
