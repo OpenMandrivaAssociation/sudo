@@ -24,7 +24,6 @@ BuildRequires:	groff-for-man
 BuildRequires:	cap-devel
 BuildRequires:	openldap-devel
 BuildRequires:	pam-devel
-Requires(pre):	openldap
 
 %description
 Sudo (superuser do) allows a system administrator to give certain users (or
