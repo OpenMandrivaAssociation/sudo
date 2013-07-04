@@ -36,7 +36,7 @@ configuration file (sudoers) on many different machines.
 %package	devel
 Summary:	Development files for %{name}
 Group:		Development/C
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{EVRD}
 
 %description	devel
 The %{name}-devel package contains header files developing sudo
