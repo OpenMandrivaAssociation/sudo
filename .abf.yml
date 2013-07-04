@@ -1,3 +1,5 @@
 sources:
   sudo-1.8.6p6.tar.gz: 50a9cc3229fe9993aca68909649f596e9d51e616
   sudo-1.8.6p6.tar.gz.sig: 6efe106cc1883ca17404ef87cdc7467636455b9c
+  sudo-1.8.7.tar.gz: 748c87b8caa2e513775961cb3330f2a78118f4bf
+  sudo-1.8.7.tar.gz.sig: d9fc03da773d8a56253ba1a5895836da686cb999

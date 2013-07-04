@@ -1,9 +1,9 @@
 # use fakeroot -ba sudo.spec to build!
-%define plevel p6
+%define plevel %nil
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.8.6%{?plevel}
+Version:	1.8.7%{?plevel}
 Release:	1
 Epoch:		1
 License:	GPLv2+
@@ -15,7 +15,6 @@ Source2:	sudo.pamd
 Source3:	sudo-1.7.4p4-sudoers
 Patch1:		sudo-1.6.7p5-strip.patch
 Patch2:		sudo-1.7.2p1-envdebug.patch
-Patch3:		sudo-1.8.6-m4path.patch
 Patch4:		sudo-1.8.5-pipelist.patch
 BuildRequires:	audit-devel
 BuildRequires:	bison
@@ -47,14 +46,13 @@ plugins that use %{name}.
 %setup -q
 %patch1 -p1 -b .strip~
 %patch2 -p1 -b .envdebug~
-%patch3 -p1 -b .m4path~
 %patch4 -p1 -b .pipelist~
 # handle newer autoconf
 mv aclocal.m4 acinclude.m4
 autoreconf -fvi
 
-# fix attribs
-find -name "Makefile.*" | xargs perl -pi -e "s|-m 0444|-m 0644|g"
+# fix attribs and filenames
+find -name "Makefile.*" | xargs sed -i -e "s|-m 0444|-m 0644|g;s|configure.in|configure.ac|g"
 
 %build
 %serverbuild
@@ -159,13 +157,16 @@ touch %{buildroot}%{_logdir}/sudo.log
 %{_mandir}/man8/visudo.8*
 %{_mandir}/man8/sudoedit.8*
 %{_mandir}/man8/sudo.8*
+%{_mandir}/man5/sudo.conf.5*
 %{_mandir}/man5/sudoers.ldap.5*
 %{_mandir}/man5/sudoers.5*
 
 %attr(0700,root,root) %dir %{_var}/db/sudo
 %attr(0750,root,root) %dir %{_logdir}/sudo-io
 %attr(0755,root,root) %dir %{_libdir}/sudo
+%{_libdir}/sudo/group_file.so
 %{_libdir}/sudo/sudo_noexec.so
+%{_libdir}/sudo/system_group.so
 %{_libdir}/sudo/sudoers.so
 
 %files devel
