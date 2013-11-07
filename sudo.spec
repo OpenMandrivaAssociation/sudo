@@ -46,7 +46,11 @@ plugins that use %{name}.
 %setup -q
 %patch1 -p1 -b .strip~
 %patch2 -p1 -b .envdebug~
-%patch4 -p1 -b .pipelist~
+# disable patch4 due 
+# https://abf.rosalinux.ru/openmandriva/sudo/issues/1
+# https://bugs.mageia.org/show_bug.cgi?id=11374
+# https://bugs.gentoo.org/show_bug.cgi?id=487618
+# patch4 -p1 -b .pipelist~
 # handle newer autoconf
 mv aclocal.m4 acinclude.m4
 autoreconf -fvi
