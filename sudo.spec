@@ -1,10 +1,10 @@
 # use fakeroot -ba sudo.spec to build!
-%define plevel %nil
+%define plevel p1
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.8.8%{?plevel}
-Release:	5
+Version:	1.8.10%{?plevel}
+Release:	1
 Epoch:		1
 License:	GPLv2+
 Group:		System/Base
