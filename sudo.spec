@@ -1,16 +1,15 @@
 # use fakeroot -ba sudo.spec to build!
-%define plevel p1
+%define plevel %nil
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.8.10%{?plevel}
+Version:	1.8.13%{?plevel}
 Release:	4
 Epoch:		1
 License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
 Source0:	http://www.sudo.ws/sudo/dist/%{name}-%{version}.tar.gz
-Source1:	http://www.sudo.ws/sudo/dist/%{name}-%{version}.tar.gz.sig
 Source2:	sudo.pamd
 Source3:	sudo-1.7.4p4-sudoers
 Patch1:		sudo-1.6.7p5-strip.patch
@@ -62,7 +61,7 @@ find -name "Makefile.*" | xargs sed -i -e "s|-m 0444|-m 0644|g;s|configure.in|co
 %serverbuild
 export CFLAGS="%{optflags} -D_GNU_SOURCE"
 
-%configure2_5x \
+%configure \
 	--without-rpath \
 	--with-logging=both \
 	--with-logfac=authpriv \
