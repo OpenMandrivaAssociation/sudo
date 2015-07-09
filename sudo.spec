@@ -15,6 +15,7 @@ Source3:	sudo-1.7.4p4-sudoers
 Patch1:		sudo-1.6.7p5-strip.patch
 Patch2:		sudo-1.7.2p1-envdebug.patch
 Patch4:		sudo-1.8.5-pipelist.patch
+BuildRequires:	autoconf-archive
 BuildRequires:	audit-devel
 BuildRequires:	bison
 BuildRequires:	groff-for-man
