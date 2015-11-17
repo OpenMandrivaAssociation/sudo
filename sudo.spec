@@ -167,10 +167,7 @@ touch %{buildroot}%{_logdir}/sudo.log
 %attr(0700,root,root) %dir %{_var}/db/sudo
 %attr(0750,root,root) %dir %{_logdir}/sudo-io
 %attr(0755,root,root) %dir %{_libdir}/sudo
-%{_libdir}/sudo/group_file.so
-%{_libdir}/sudo/sudo_noexec.so
-%{_libdir}/sudo/system_group.so
-%{_libdir}/sudo/sudoers.so
+%{_libdir}/sudo/*
 
 %files devel
 %{_includedir}/sudo_plugin.h
