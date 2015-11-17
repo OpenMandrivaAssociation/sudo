@@ -144,7 +144,7 @@ touch %{buildroot}%{_logdir}/sudo.log
 
 %files -f %{name}.lang
 %doc doc/LICENSE doc/HISTORY README README.LDAP
-%doc doc/TROUBLESHOOTING doc/UPGRADE doc/sample.* doc/schema.*
+%doc doc/TROUBLESHOOTING doc/UPGRADE doc/schema.*
 %attr(0440,root,root) %config(noreplace) %{_sysconfdir}/sudoers
 %attr(0750,root,root) %dir %{_sysconfdir}/sudoers.d/
 %config(noreplace) %{_sysconfdir}/logrotate.d/sudo
