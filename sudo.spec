@@ -52,7 +52,6 @@ plugins that use %{name}.
 # https://bugs.gentoo.org/show_bug.cgi?id=487618
 # patch4 -p1 -b .pipelist~
 # handle newer autoconf
-mv aclocal.m4 acinclude.m4
 autoreconf -fvi
 
 # fix attribs and filenames
