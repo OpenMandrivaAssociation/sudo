@@ -3,19 +3,20 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.8.7%{?plevel}
-Release:	6
+Version:	1.8.13%{?plevel}
+Release:	0.1
 Epoch:		1
 License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
 Source0:	http://www.sudo.ws/sudo/dist/%{name}-%{version}.tar.gz
-Source1:	http://www.sudo.ws/sudo/dist/%{name}-%{version}.tar.gz.sig
+Source1:	%{name}.rpmlintrc
 Source2:	sudo.pamd
 Source3:	sudo-1.7.4p4-sudoers
 Patch1:		sudo-1.6.7p5-strip.patch
 Patch2:		sudo-1.7.2p1-envdebug.patch
 Patch4:		sudo-1.8.5-pipelist.patch
+BuildRequires:	autoconf-archive
 BuildRequires:	audit-devel
 BuildRequires:	bison
 BuildRequires:	groff-for-man
@@ -46,9 +47,12 @@ plugins that use %{name}.
 %setup -q
 %patch1 -p1 -b .strip~
 %patch2 -p1 -b .envdebug~
-%patch4 -p1 -b .pipelist~
+# disable patch4 due 
+# https://abf.rosalinux.ru/openmandriva/sudo/issues/1
+# https://bugs.mageia.org/show_bug.cgi?id=11374
+# https://bugs.gentoo.org/show_bug.cgi?id=487618
+# patch4 -p1 -b .pipelist~
 # handle newer autoconf
-mv aclocal.m4 acinclude.m4
 autoreconf -fvi
 
 # fix attribs and filenames
@@ -141,7 +145,7 @@ touch %{buildroot}%{_logdir}/sudo.log
 
 %files -f %{name}.lang
 %doc doc/LICENSE doc/HISTORY README README.LDAP
-%doc doc/TROUBLESHOOTING doc/UPGRADE doc/sample.* doc/schema.*
+%doc doc/TROUBLESHOOTING doc/UPGRADE doc/schema.*
 %attr(0440,root,root) %config(noreplace) %{_sysconfdir}/sudoers
 %attr(0750,root,root) %dir %{_sysconfdir}/sudoers.d/
 %config(noreplace) %{_sysconfdir}/logrotate.d/sudo
@@ -164,10 +168,7 @@ touch %{buildroot}%{_logdir}/sudo.log
 %attr(0700,root,root) %dir %{_var}/db/sudo
 %attr(0750,root,root) %dir %{_logdir}/sudo-io
 %attr(0755,root,root) %dir %{_libdir}/sudo
-%{_libdir}/sudo/group_file.so
-%{_libdir}/sudo/sudo_noexec.so
-%{_libdir}/sudo/system_group.so
-%{_libdir}/sudo/sudoers.so
+%{_libdir}/sudo/*
 
 %files devel
 %{_includedir}/sudo_plugin.h
