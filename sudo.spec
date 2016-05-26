@@ -4,7 +4,7 @@
 Summary:	Allows command execution as root for specified users
 Name:		sudo
 Version:	1.8.13%{?plevel}
-Release:	7
+Release:	8
 Epoch:		1
 License:	GPLv2+
 Group:		System/Base
@@ -136,6 +136,9 @@ chmod 755 %{buildroot}%{_sbindir}/*
 
 # (tpg) create the missing log file
 touch %{buildroot}%{_logdir}/sudo.log
+
+# (tpg) get rid of huge ChangeLog file
+rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 
 %find_lang sudo sudoers %{name}.lang
 
