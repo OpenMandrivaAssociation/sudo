@@ -3,8 +3,8 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.8.13%{?plevel}
-Release:	8
+Version:	1.8.17%{?plevel}
+Release:	1
 Epoch:		1
 License:	GPLv2+
 Group:		System/Base
@@ -172,6 +172,7 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 %attr(0750,root,root) %dir %{_logdir}/sudo-io
 %attr(0755,root,root) %dir %{_libdir}/sudo
 %{_libdir}/sudo/*
+%{_tmpfilesdir}/%{name}.conf
 
 %files devel
 %{_includedir}/sudo_plugin.h
