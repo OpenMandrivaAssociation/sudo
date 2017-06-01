@@ -3,7 +3,7 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.8.19%{?plevel}
+Version:	1.8.20%{?plevel}
 Release:	1
 Epoch:		1
 License:	GPLv2+
@@ -150,6 +150,7 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 %doc doc/LICENSE doc/HISTORY README README.LDAP
 %doc doc/TROUBLESHOOTING doc/UPGRADE doc/schema.*
 %attr(0440,root,root) %config(noreplace) %{_sysconfdir}/sudoers
+%attr(0440,root,root) %{_sysconfdir}/sudoers.dist
 %attr(0750,root,root) %dir %{_sysconfdir}/sudoers.d/
 %config(noreplace) %{_sysconfdir}/logrotate.d/sudo
 %config(noreplace) %{_sysconfdir}/pam.d/sudo
