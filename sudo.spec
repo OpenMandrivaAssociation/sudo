@@ -147,8 +147,7 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 %create_ghostfile %{_logdir}/sudo.log root root 600
 
 %files -f %{name}.lang
-%doc doc/LICENSE doc/HISTORY README README.LDAP
-%doc doc/TROUBLESHOOTING doc/UPGRADE doc/schema.*
+%doc %{_docdir}/%{name}
 %attr(0440,root,root) %config(noreplace) %{_sysconfdir}/sudoers
 %attr(0440,root,root) %{_sysconfdir}/sudoers.dist
 %attr(0750,root,root) %dir %{_sysconfdir}/sudoers.d/
@@ -168,7 +167,6 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 %{_mandir}/man5/sudo.conf.5*
 %{_mandir}/man5/sudoers.ldap.5*
 %{_mandir}/man5/sudoers.5*
-
 %attr(0700,root,root) %dir %{_var}/db/sudo
 %attr(0750,root,root) %dir %{_logdir}/sudo-io
 %attr(0755,root,root) %dir %{_libdir}/sudo
