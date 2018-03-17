@@ -46,8 +46,9 @@ plugins that use %{name}.
 
 %prep
 %setup -q
-%autopatch -p1
 
+%patch1 -p1 -b .strip~
+%patch2 -p1 -b .envdebug~
 # disable patch4 due
 # https://abf.rosalinux.ru/openmandriva/sudo/issues/1
 # https://bugs.mageia.org/show_bug.cgi?id=11374
