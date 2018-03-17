@@ -23,6 +23,7 @@ BuildRequires:	groff-for-man
 BuildRequires:	cap-devel
 BuildRequires:	openldap-devel
 BuildRequires:	pam-devel
+Requires(post):	rpm-helper
 
 %description
 Sudo (superuser do) allows a system administrator to give certain users (or
@@ -45,9 +46,9 @@ plugins that use %{name}.
 
 %prep
 %setup -q
-%patch1 -p1 -b .strip~
-%patch2 -p1 -b .envdebug~
-# disable patch4 due 
+%autopatch -p1
+
+# disable patch4 due
 # https://abf.rosalinux.ru/openmandriva/sudo/issues/1
 # https://bugs.mageia.org/show_bug.cgi?id=11374
 # https://bugs.gentoo.org/show_bug.cgi?id=487618
@@ -87,7 +88,7 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 	--with-insults \
 	--with-all-insults
 
-%make
+%make_build
 
 %install
 install -d %{buildroot}/usr
@@ -97,7 +98,7 @@ install -d %{buildroot}%{_var}/db/sudo
 install -d %{buildroot}%{_logdir}/sudo
 install -d %{buildroot}%{_logdir}/sudo-io
 
-%makeinstall_std install_uid=`id -u` install_gid=`id -g` sudoers_uid=`id -u` sudoers_gid=`id -g`
+%make_install install_uid=`id -u` install_gid=`id -g` sudoers_uid=`id -u` sudoers_gid=`id -g`
 
 install -m0644 %{SOURCE2} -D %{buildroot}%{_sysconfdir}/pam.d/sudo
 install -m0644 %{SOURCE3} -D %{buildroot}%{_sysconfdir}/sudoers
@@ -156,7 +157,7 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 %config(noreplace) %{_sysconfdir}/pam.d/sudo-i
 %attr(0755,root,root) %{_bindir}/sudoers2ldif
 %attr(4111,root,root) %{_bindir}/sudo
-%attr(4111,root,root) %{_bindir}/sudoedit
+%{_bindir}/sudoedit
 %attr(0111,root,root) %{_bindir}/sudoreplay
 %attr(0755,root,root) %{_sbindir}/visudo
 %ghost %{_logdir}/sudo.log
