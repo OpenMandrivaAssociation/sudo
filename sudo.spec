@@ -1,10 +1,13 @@
 # use fakeroot -ba sudo.spec to build!
-%define plevel p2
+%define plevel %nil
+
+%global __reqires_exclude_from %{_docdir}
+%global __requires_exclude /usr/bin/perl|perl\\(.*)
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.8.20%{?plevel}
-Release:	2
+Version:	1.8.22%{?plevel}
+Release:	1
 Epoch:		1
 License:	GPLv2+
 Group:		System/Base
@@ -23,6 +26,7 @@ BuildRequires:	groff-for-man
 BuildRequires:	cap-devel
 BuildRequires:	openldap-devel
 BuildRequires:	pam-devel
+Requires(post):	rpm-helper
 
 %description
 Sudo (superuser do) allows a system administrator to give certain users (or
@@ -45,9 +49,10 @@ plugins that use %{name}.
 
 %prep
 %setup -q
+
 %patch1 -p1 -b .strip~
 %patch2 -p1 -b .envdebug~
-# disable patch4 due 
+# disable patch4 due
 # https://abf.rosalinux.ru/openmandriva/sudo/issues/1
 # https://bugs.mageia.org/show_bug.cgi?id=11374
 # https://bugs.gentoo.org/show_bug.cgi?id=487618
@@ -87,7 +92,7 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 	--with-insults \
 	--with-all-insults
 
-%make
+%make_build
 
 %install
 install -d %{buildroot}/usr
@@ -97,7 +102,7 @@ install -d %{buildroot}%{_var}/db/sudo
 install -d %{buildroot}%{_logdir}/sudo
 install -d %{buildroot}%{_logdir}/sudo-io
 
-%makeinstall_std install_uid=`id -u` install_gid=`id -g` sudoers_uid=`id -u` sudoers_gid=`id -g`
+%make_install install_uid=`id -u` install_gid=`id -g` sudoers_uid=`id -u` sudoers_gid=`id -g`
 
 install -m0644 %{SOURCE2} -D %{buildroot}%{_sysconfdir}/pam.d/sudo
 install -m0644 %{SOURCE3} -D %{buildroot}%{_sysconfdir}/sudoers
@@ -147,8 +152,7 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 %create_ghostfile %{_logdir}/sudo.log root root 600
 
 %files -f %{name}.lang
-%doc doc/LICENSE doc/HISTORY README README.LDAP
-%doc doc/TROUBLESHOOTING doc/UPGRADE doc/schema.*
+%doc %{_docdir}/%{name}
 %attr(0440,root,root) %config(noreplace) %{_sysconfdir}/sudoers
 %attr(0440,root,root) %{_sysconfdir}/sudoers.dist
 %attr(0750,root,root) %dir %{_sysconfdir}/sudoers.d/
@@ -157,7 +161,7 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 %config(noreplace) %{_sysconfdir}/pam.d/sudo-i
 %attr(0755,root,root) %{_bindir}/sudoers2ldif
 %attr(4111,root,root) %{_bindir}/sudo
-%attr(4111,root,root) %{_bindir}/sudoedit
+%{_bindir}/sudoedit
 %attr(0111,root,root) %{_bindir}/sudoreplay
 %attr(0755,root,root) %{_sbindir}/visudo
 %ghost %{_logdir}/sudo.log
@@ -168,7 +172,7 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 %{_mandir}/man5/sudo.conf.5*
 %{_mandir}/man5/sudoers.ldap.5*
 %{_mandir}/man5/sudoers.5*
-
+%{_mandir}/man5/sudoers_timestamp.5*
 %attr(0700,root,root) %dir %{_var}/db/sudo
 %attr(0750,root,root) %dir %{_logdir}/sudo-io
 %attr(0755,root,root) %dir %{_libdir}/sudo
