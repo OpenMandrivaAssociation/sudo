@@ -92,7 +92,7 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 	--with-insults \
 	--with-all-insults
 
-%make_build
+%make
 
 %install
 install -d %{buildroot}/usr
@@ -102,7 +102,7 @@ install -d %{buildroot}%{_var}/db/sudo
 install -d %{buildroot}%{_logdir}/sudo
 install -d %{buildroot}%{_logdir}/sudo-io
 
-%make_install install_uid=`id -u` install_gid=`id -g` sudoers_uid=`id -u` sudoers_gid=`id -g`
+%makeinstall_std install_uid=`id -u` install_gid=`id -g` sudoers_uid=`id -u` sudoers_gid=`id -g`
 
 install -m0644 %{SOURCE2} -D %{buildroot}%{_sysconfdir}/pam.d/sudo
 install -m0644 %{SOURCE3} -D %{buildroot}%{_sysconfdir}/sudoers
