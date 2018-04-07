@@ -1,13 +1,13 @@
 # use fakeroot -ba sudo.spec to build!
-%define plevel p2
+%define plevel %nil
 
 %global __reqires_exclude_from %{_docdir}
 %global __requires_exclude /usr/bin/perl|perl\\(.*)
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.8.20%{?plevel}
-Release:	3
+Version:	1.8.22%{?plevel}
+Release:	1
 Epoch:		1
 License:	GPLv2+
 Group:		System/Base
