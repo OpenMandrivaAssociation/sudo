@@ -172,6 +172,7 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 %{_mandir}/man5/sudo.conf.5*
 %{_mandir}/man5/sudoers.ldap.5*
 %{_mandir}/man5/sudoers.5*
+%{_mandir}/man5/sudoers_timestamp.5*
 %attr(0700,root,root) %dir %{_var}/db/sudo
 %attr(0750,root,root) %dir %{_logdir}/sudo-io
 %attr(0755,root,root) %dir %{_libdir}/sudo
