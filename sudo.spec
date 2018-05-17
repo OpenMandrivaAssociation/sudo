@@ -26,6 +26,7 @@ BuildRequires:	groff-for-man
 BuildRequires:	cap-devel
 BuildRequires:	openldap-devel
 BuildRequires:	pam-devel
+BuildRequires:	systemd
 Requires(post):	rpm-helper
 
 %description
