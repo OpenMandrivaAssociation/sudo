@@ -6,7 +6,7 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.8.22%{?plevel}
+Version:	1.8.23%{?plevel}
 Release:	1
 Epoch:		1
 License:	GPLv2+
@@ -26,6 +26,7 @@ BuildRequires:	groff-for-man
 BuildRequires:	cap-devel
 BuildRequires:	openldap-devel
 BuildRequires:	pam-devel
+BuildRequires:	systemd
 Requires(post):	rpm-helper
 
 %description
@@ -38,12 +39,12 @@ of each command (providing a clear audit trail of who did what), a
 configurable timeout of the sudo command, and the ability to use the same
 configuration file (sudoers) on many different machines.
 
-%package	devel
+%package devel
 Summary:	Development files for %{name}
 Group:		Development/C
 Requires:	%{name} = %{EVRD}
 
-%description	devel
+%description devel
 The %{name}-devel package contains header files developing sudo
 plugins that use %{name}.
 
@@ -106,7 +107,7 @@ install -d %{buildroot}%{_logdir}/sudo-io
 
 install -m0644 %{SOURCE2} -D %{buildroot}%{_sysconfdir}/pam.d/sudo
 install -m0644 %{SOURCE3} -D %{buildroot}%{_sysconfdir}/sudoers
-install -m0755 plugins/sudoers/sudoers2ldif %{buildroot}%{_bindir}
+#install -m0755 plugins/sudoers/sudoers2ldif %{buildroot}%{_bindir}
 
 # Installing logrotated file
 cat <<END >%{buildroot}%{_sysconfdir}/logrotate.d/sudo
@@ -159,12 +160,14 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 %config(noreplace) %{_sysconfdir}/logrotate.d/sudo
 %config(noreplace) %{_sysconfdir}/pam.d/sudo
 %config(noreplace) %{_sysconfdir}/pam.d/sudo-i
-%attr(0755,root,root) %{_bindir}/sudoers2ldif
+#%attr(0755,root,root) %{_bindir}/sudoers2ldif
 %attr(4111,root,root) %{_bindir}/sudo
 %{_bindir}/sudoedit
+%{_bindir}/cvtsudoers
 %attr(0111,root,root) %{_bindir}/sudoreplay
 %attr(0755,root,root) %{_sbindir}/visudo
 %ghost %{_logdir}/sudo.log
+%{_mandir}/man1/cvtsudoers.1*
 %{_mandir}/man8/sudoreplay.8*
 %{_mandir}/man8/visudo.8*
 %{_mandir}/man8/sudoedit.8*
