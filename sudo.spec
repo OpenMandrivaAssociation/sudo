@@ -38,12 +38,12 @@ of each command (providing a clear audit trail of who did what), a
 configurable timeout of the sudo command, and the ability to use the same
 configuration file (sudoers) on many different machines.
 
-%package	devel
+%package devel
 Summary:	Development files for %{name}
 Group:		Development/C
 Requires:	%{name} = %{EVRD}
 
-%description	devel
+%description devel
 The %{name}-devel package contains header files developing sudo
 plugins that use %{name}.
 
@@ -106,7 +106,7 @@ install -d %{buildroot}%{_logdir}/sudo-io
 
 install -m0644 %{SOURCE2} -D %{buildroot}%{_sysconfdir}/pam.d/sudo
 install -m0644 %{SOURCE3} -D %{buildroot}%{_sysconfdir}/sudoers
-install -m0755 plugins/sudoers/sudoers2ldif %{buildroot}%{_bindir}
+#install -m0755 plugins/sudoers/sudoers2ldif %{buildroot}%{_bindir}
 
 # Installing logrotated file
 cat <<END >%{buildroot}%{_sysconfdir}/logrotate.d/sudo
@@ -159,7 +159,7 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 %config(noreplace) %{_sysconfdir}/logrotate.d/sudo
 %config(noreplace) %{_sysconfdir}/pam.d/sudo
 %config(noreplace) %{_sysconfdir}/pam.d/sudo-i
-%attr(0755,root,root) %{_bindir}/sudoers2ldif
+#%attr(0755,root,root) %{_bindir}/sudoers2ldif
 %attr(4111,root,root) %{_bindir}/sudo
 %{_bindir}/sudoedit
 %attr(0111,root,root) %{_bindir}/sudoreplay
