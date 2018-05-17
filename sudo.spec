@@ -163,9 +163,11 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 #%attr(0755,root,root) %{_bindir}/sudoers2ldif
 %attr(4111,root,root) %{_bindir}/sudo
 %{_bindir}/sudoedit
+%{_bindir}/cvtsudoers
 %attr(0111,root,root) %{_bindir}/sudoreplay
 %attr(0755,root,root) %{_sbindir}/visudo
 %ghost %{_logdir}/sudo.log
+%{_mandir}/man1/cvtsudoers.1*
 %{_mandir}/man8/sudoreplay.8*
 %{_mandir}/man8/visudo.8*
 %{_mandir}/man8/sudoedit.8*
