@@ -6,7 +6,7 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.8.23%{?plevel}
+Version:	1.8.26%{?plevel}
 Release:	3
 Epoch:		1
 License:	GPLv2+
