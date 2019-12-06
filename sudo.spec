@@ -1,5 +1,3 @@
-%define optflags %{optflags} -Oz
-
 # use fakeroot -ba sudo.spec to build!
 %define plevel %nil
 
@@ -68,7 +66,7 @@ find -name "Makefile.*" | xargs sed -i -e "s|-m 0444|-m 0644|g;s|configure.in|co
 
 %build
 %serverbuild
-export CFLAGS="%{optflags} -D_GNU_SOURCE"
+export CFLAGS="%{optflags} -Oz -D_GNU_SOURCE"
 
 %configure \
 	--without-rpath \
