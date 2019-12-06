@@ -1,3 +1,5 @@
+%define optflags %{optflags} -Oz
+
 # use fakeroot -ba sudo.spec to build!
 %define plevel %nil
 
@@ -6,9 +8,9 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.8.29
-Release:	1
 Epoch:		1
+Version:	1.8.29
+Release:	2
 License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
@@ -20,13 +22,12 @@ Patch1:		sudo-1.6.7p5-strip.patch
 Patch2:		sudo-1.7.2p1-envdebug.patch
 Patch4:		sudo-1.8.5-pipelist.patch
 BuildRequires:	autoconf-archive
-BuildRequires:	audit-devel
+BuildRequires:	pkgconfig(audit)
 BuildRequires:	bison
 BuildRequires:	groff-for-man
-BuildRequires:	cap-devel
+BuildRequires:	pkgconfig(libcap)
 BuildRequires:	openldap-devel
 BuildRequires:	pam-devel
-BuildRequires:	systemd
 BuildRequires:	rpm-helper
 Requires(post):	rpm-helper
 
