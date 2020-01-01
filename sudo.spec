@@ -7,8 +7,8 @@
 Summary:	Allows command execution as root for specified users
 Name:		sudo
 Epoch:		1
-Version:	1.8.29
-Release:	2
+Version:	1.8.30
+Release:	1
 License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
