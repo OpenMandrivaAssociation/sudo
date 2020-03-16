@@ -1,5 +1,5 @@
 # use fakeroot -ba sudo.spec to build!
-%define plevel %nil
+%define plevel p1
 
 %global __reqires_exclude_from %{_docdir}
 %global __requires_exclude /usr/bin/perl|perl\\(.*)
@@ -12,7 +12,7 @@ Release:	1
 License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
-Source0:	http://www.sudo.ws/sudo/dist/%{name}-%{version}.tar.gz
+Source0:	http://www.sudo.ws/sudo/dist/%{name}-%{version}%{?plevel:%{plevel}}.tar.gz
 Source1:	%{name}.rpmlintrc
 Source2:	sudo.pamd
 Source3:	sudo-1.7.4p4-sudoers
@@ -49,7 +49,7 @@ The %{name}-devel package contains header files developing sudo
 plugins that use %{name}.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}%{?plevel:%{plevel}}
 
 %patch1 -p1 -b .strip~
 %patch2 -p1 -b .envdebug~
