@@ -1,5 +1,5 @@
 # use fakeroot -ba sudo.spec to build!
-%define plevel p1
+#define plevel p1
 
 %global __reqires_exclude_from %{_docdir}
 %global __requires_exclude /usr/bin/perl|perl\\(.*)
@@ -7,7 +7,7 @@
 Summary:	Allows command execution as root for specified users
 Name:		sudo
 Epoch:		1
-Version:	1.8.31
+Version:	1.9.0
 Release:	1%{?plevel:.%{plevel}.1}
 License:	GPLv2+
 Group:		System/Base
@@ -157,6 +157,8 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 %attr(0440,root,root) %config(noreplace) %{_sysconfdir}/sudoers
 %attr(0440,root,root) %{_sysconfdir}/sudoers.dist
 %attr(0750,root,root) %dir %{_sysconfdir}/sudoers.d/
+%config(noreplace) %{_sysconfdir}/sudo.conf
+%config(noreplace) %{_sysconfdir}/sudo_logsrvd.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/sudo
 %config(noreplace) %{_sysconfdir}/pam.d/sudo
 %config(noreplace) %{_sysconfdir}/pam.d/sudo-i
@@ -167,15 +169,22 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 %attr(0111,root,root) %{_bindir}/sudoreplay
 %attr(0755,root,root) %{_sbindir}/visudo
 %ghost %{_logdir}/sudo.log
+%{_sbindir}/sudo_logsrvd
+%{_sbindir}/sudo_sendlog
 %{_mandir}/man1/cvtsudoers.1*
 %{_mandir}/man8/sudoreplay.8*
 %{_mandir}/man8/visudo.8*
 %{_mandir}/man8/sudoedit.8*
 %{_mandir}/man8/sudo.8*
+%{_mandir}/man8/sudo_logsrvd.8*
+%{_mandir}/man8/sudo_plugin_python.8*
+%{_mandir}/man8/sudo_sendlog.8*
 %{_mandir}/man5/sudo.conf.5*
 %{_mandir}/man5/sudoers.ldap.5*
 %{_mandir}/man5/sudoers.5*
 %{_mandir}/man5/sudoers_timestamp.5*
+%{_mandir}/man5/sudo_logsrv.proto.5*
+%{_mandir}/man5/sudo_logsrvd.conf.5*
 %attr(0700,root,root) %dir %{_var}/db/sudo
 %attr(0750,root,root) %dir %{_logdir}/sudo-io
 %attr(0755,root,root) %dir %{_libdir}/sudo
