@@ -177,7 +177,6 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 %{_mandir}/man8/sudoedit.8*
 %{_mandir}/man8/sudo.8*
 %{_mandir}/man8/sudo_logsrvd.8*
-#{_mandir}/man8/sudo_plugin_python.8*
 %{_mandir}/man8/sudo_sendlog.8*
 %{_mandir}/man5/sudo.conf.5*
 %{_mandir}/man5/sudoers.ldap.5*
@@ -193,4 +192,4 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 
 %files devel
 %{_includedir}/sudo_plugin.h
-#{_mandir}/man8/sudo_plugin.8*
+%{_mandir}/man8/sudo_plugin.8*
