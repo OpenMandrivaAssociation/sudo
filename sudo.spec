@@ -193,4 +193,4 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 
 %files devel
 %{_includedir}/sudo_plugin.h
-%{_mandir}/man8/sudo_plugin.8*
+#{_mandir}/man8/sudo_plugin.8*
