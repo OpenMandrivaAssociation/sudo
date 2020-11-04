@@ -7,7 +7,7 @@
 Summary:	Allows command execution as root for specified users
 Name:		sudo
 Epoch:		1
-Version:	1.9.2
+Version:	1.9.3p1
 Release:	1
 License:	GPLv2+
 Group:		System/Base
@@ -177,7 +177,6 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 %{_mandir}/man8/sudoedit.8*
 %{_mandir}/man8/sudo.8*
 %{_mandir}/man8/sudo_logsrvd.8*
-%{_mandir}/man8/sudo_plugin_python.8*
 %{_mandir}/man8/sudo_sendlog.8*
 %{_mandir}/man5/sudo.conf.5*
 %{_mandir}/man5/sudoers.ldap.5*
