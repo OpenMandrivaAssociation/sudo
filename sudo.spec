@@ -7,7 +7,7 @@
 Summary:	Allows command execution as root for specified users
 Name:		sudo
 Epoch:		1
-Version:	1.9.3p1
+Version:	1.9.4p2
 Release:	1
 License:	GPLv2+
 Group:		System/Base
