@@ -1,24 +1,19 @@
-# use fakeroot -ba sudo.spec to build!
-#define plevel p1
-
 %global __reqires_exclude_from %{_docdir}
 %global __requires_exclude /usr/bin/perl|perl\\(.*)
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Epoch:		1
-Version:	1.9.5
+Version:	1.9.5p1
 Release:	1
 License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
-Source0:	http://www.sudo.ws/sudo/dist/%{name}-%{version}%{?plevel:%{plevel}}.tar.gz
+Source0:	http://www.sudo.ws/sudo/dist/%{name}-%{version}.tar.gz
 Source1:	%{name}.rpmlintrc
 Source2:	sudo.pamd
 Source3:	sudo-1.7.4p4-sudoers
 Patch1:		sudo-1.6.7p5-strip.patch
 Patch2:		sudo-1.7.2p1-envdebug.patch
-Patch4:		sudo-1.8.5-pipelist.patch
 BuildRequires:	autoconf-archive
 BuildRequires:	pkgconfig(audit)
 BuildRequires:	bison
@@ -49,15 +44,8 @@ The %{name}-devel package contains header files developing sudo
 plugins that use %{name}.
 
 %prep
-%setup -q -n %{name}-%{version}%{?plevel:%{plevel}}
+%autosetup -p1
 
-%patch1 -p1 -b .strip~
-%patch2 -p1 -b .envdebug~
-# disable patch4 due
-# https://abf.rosalinux.ru/openmandriva/sudo/issues/1
-# https://bugs.mageia.org/show_bug.cgi?id=11374
-# https://bugs.gentoo.org/show_bug.cgi?id=487618
-# patch4 -p1 -b .pipelist~
 # handle newer autoconf
 autoreconf -fvi
 
