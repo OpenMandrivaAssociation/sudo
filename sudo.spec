@@ -4,7 +4,7 @@
 Summary:	Allows command execution as root for specified users
 Name:		sudo
 Version:	1.9.5p2
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
@@ -91,7 +91,7 @@ install -d %{buildroot}%{_var}/db/sudo
 install -d %{buildroot}%{_logdir}/sudo
 install -d %{buildroot}%{_logdir}/sudo-io
 
-%make_install install_uid=`id -u` install_gid=`id -g` sudoers_uid=`id -u` sudoers_gid=`id -g`
+%make_install install_uid=$(id -u) install_gid=$(id -g) sudoers_uid=$(id -u) sudoers_gid=$(id -g)
 
 install -m0644 %{SOURCE2} -D %{buildroot}%{_sysconfdir}/pam.d/sudo
 install -m0644 %{SOURCE3} -D %{buildroot}%{_sysconfdir}/sudoers
