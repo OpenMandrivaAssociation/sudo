@@ -3,7 +3,7 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.9.6
+Version:	1.9.6p1
 Release:	1
 License:	GPLv2+
 Group:		System/Base
@@ -21,8 +21,6 @@ BuildRequires:	groff-for-man
 BuildRequires:	pkgconfig(libcap)
 BuildRequires:	openldap-devel
 BuildRequires:	pam-devel
-BuildRequires:	rpm-helper
-Requires(post):	rpm-helper
 
 %description
 Sudo (superuser do) allows a system administrator to give certain users (or
@@ -135,10 +133,6 @@ touch %{buildroot}%{_logdir}/sudo.log
 rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 
 %find_lang sudo sudoers %{name}.lang
-
-%post
-/bin/chmod 0440 %{_sysconfdir}/sudoers || :
-%create_ghostfile %{_logdir}/sudo.log root root 600
 
 %files -f %{name}.lang
 %doc %{_docdir}/%{name}
