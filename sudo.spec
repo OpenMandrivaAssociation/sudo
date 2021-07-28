@@ -3,8 +3,8 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.9.6p1
-Release:	2
+Version:	1.9.7p2
+Release:	1
 License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
@@ -12,7 +12,6 @@ Source0:	http://www.sudo.ws/sudo/dist/%{name}-%{version}.tar.gz
 Source1:	%{name}.rpmlintrc
 Source2:	sudo.pamd
 Source3:	sudo-1.7.4p4-sudoers
-Patch1:		sudo-1.6.7p5-strip.patch
 Patch2:		sudo-1.7.2p1-envdebug.patch
 BuildRequires:	autoconf-archive
 BuildRequires:	bison

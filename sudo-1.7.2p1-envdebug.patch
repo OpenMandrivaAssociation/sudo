@@ -1,12 +1,21 @@
-diff -up sudo-1.7.2p1/configure.ac.envdebug sudo-1.7.2p1/configure.ac
---- sudo-1.7.2p1/configure.ac.envdebug	2009-10-30 12:18:09.000000000 +0100
-+++ sudo-1.7.2p1/configure.ac	2009-10-30 12:19:01.000000000 +0100
-@@ -1214,7 +1214,7 @@ AC_ARG_ENABLE(env_debug,
+diff -up sudo-1.9.7p2/configure.ac.1~ sudo-1.9.7p2/configure.ac
+--- sudo-1.9.7p2/configure.ac.1~	2021-07-27 22:26:39.847373494 +0200
++++ sudo-1.9.7p2/configure.ac	2021-07-27 22:27:30.545208085 +0200
+@@ -1284,7 +1284,7 @@ AC_ARG_ENABLE(path_info,
+ [AS_HELP_STRING([--disable-path-info], [Print 'command not allowed' not 'command not found'])],
+ [ case "$enableval" in
+     yes)	;;
+-    no)		AC_DEFINE(DONT_LEAK_PATH_INFO)
++    no)		AC_DEFINE(DONT_LEAK_PATH_INFO, [], [Do not leak path info])
+ 		path_info=off
+ 		;;
+     *)		AC_MSG_WARN([ignoring unknown argument to --enable-path-info: $enableval])
+@@ -1295,7 +1295,7 @@ AC_ARG_ENABLE(path_info,
+ AC_ARG_ENABLE(env_debug,
  [AS_HELP_STRING([--enable-env-debug], [Whether to enable environment debugging.])],
  [ case "$enableval" in
-     yes)	AC_MSG_RESULT(yes)
--		AC_DEFINE(ENV_DEBUG)
-+		AC_DEFINE(ENV_DEBUG, [], [Environment debugging.])
+-    yes)	AC_DEFINE(ENV_DEBUG)
++    yes)	AC_DEFINE(ENV_DEBUG, [], [Environment debugging])
  		;;
-     no)		AC_MSG_RESULT(no)
- 		;;
+     no)		;;
+     *)		AC_MSG_WARN([ignoring unknown argument to --enable-env-debug: $enableval])
