@@ -4,7 +4,7 @@
 Summary:	Allows command execution as root for specified users
 Name:		sudo
 Version:	1.9.8p2
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
@@ -57,7 +57,7 @@ export CFLAGS="%{optflags} -Oz -D_GNU_SOURCE"
 	--with-logging=both \
 	--with-logfac=authpriv \
 	--with-logpath=%{_logdir}/sudo.log \
-	--with-editor=/bin/vi \
+	--with-editor=%{_bindir}/vi \
 	--enable-log-host \
 	--with-pam \
 	--with-pam-login \
