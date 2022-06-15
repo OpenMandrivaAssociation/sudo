@@ -4,7 +4,7 @@
 Summary:	Allows command execution as root for specified users
 Name:		sudo
 Version:	1.9.8p2
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
@@ -73,7 +73,7 @@ export CFLAGS="%{optflags} -Oz -D_GNU_SOURCE"
 	--with-noexec=%{_libdir}/sudo/sudo_noexec.so \
 	--with-ldap \
 	--with-ldap-conf-file=%{_sysconfdir}/ldap.conf \
-	--with-secure-path="/sbin:%{_sbindir}:/bin:%{_bindir}:/usr/local/bin:/usr/local/sbin" \
+	--with-secure-path="%{_sbindir}:/sbin:%{_bindir}:/bin:/usr/local/sbin:/usr/local/bin" \
 	--with-passprompt="[sudo] password for %p: " \
 	--with-sssd \
 	--with-insults \
@@ -153,19 +153,19 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 %ghost %{_logdir}/sudo.log
 %{_sbindir}/sudo_logsrvd
 %{_sbindir}/sudo_sendlog
-%{_mandir}/man1/cvtsudoers.1*
-%{_mandir}/man8/sudoreplay.8*
-%{_mandir}/man8/visudo.8*
-%{_mandir}/man8/sudoedit.8*
-%{_mandir}/man8/sudo.8*
-%{_mandir}/man8/sudo_logsrvd.8*
-%{_mandir}/man8/sudo_sendlog.8*
-%{_mandir}/man5/sudo.conf.5*
-%{_mandir}/man5/sudoers.ldap.5*
-%{_mandir}/man5/sudoers.5*
-%{_mandir}/man5/sudoers_timestamp.5*
-%{_mandir}/man5/sudo_logsrv.proto.5*
-%{_mandir}/man5/sudo_logsrvd.conf.5*
+%doc %{_mandir}/man1/cvtsudoers.1*
+%doc %{_mandir}/man8/sudoreplay.8*
+%doc %{_mandir}/man8/visudo.8*
+%doc %{_mandir}/man8/sudoedit.8*
+%doc %{_mandir}/man8/sudo.8*
+%doc %{_mandir}/man8/sudo_logsrvd.8*
+%doc %{_mandir}/man8/sudo_sendlog.8*
+%doc %{_mandir}/man5/sudo.conf.5*
+%doc %{_mandir}/man5/sudoers.ldap.5*
+%doc %{_mandir}/man5/sudoers.5*
+%doc %{_mandir}/man5/sudoers_timestamp.5*
+%doc %{_mandir}/man5/sudo_logsrv.proto.5*
+%doc %{_mandir}/man5/sudo_logsrvd.conf.5*
 %attr(0700,root,root) %dir %{_var}/db/sudo
 %attr(0750,root,root) %dir %{_logdir}/sudo-io
 %attr(0755,root,root) %dir %{_libdir}/sudo
@@ -174,4 +174,4 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 
 %files devel
 %{_includedir}/sudo_plugin.h
-%{_mandir}/man8/sudo_plugin.8*
+%doc %{_mandir}/man8/sudo_plugin.8*
