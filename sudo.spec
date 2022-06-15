@@ -175,4 +175,4 @@ rm -rf %{buildroot}%{_docdir}/sudo/ChangeLog
 
 %files devel
 %{_includedir}/sudo_plugin.h
-%doc %{_mandir}/man8/sudo_plugin.8*
+%doc %{_mandir}/man5/sudo_plugin.5*
