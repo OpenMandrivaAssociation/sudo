@@ -3,8 +3,8 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.9.8p2
-Release:	3
+Version:	1.9.11p2
+Release:	1
 License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
@@ -21,6 +21,7 @@ BuildRequires:	groff-for-man
 BuildRequires:	pkgconfig(libcap)
 BuildRequires:	openldap-devel
 BuildRequires:	pam-devel
+BuildRequires:	systemd-rpm-macros
 
 %description
 Sudo (superuser do) allows a system administrator to give certain users (or
@@ -77,8 +78,8 @@ export CFLAGS="%{optflags} -Oz -D_GNU_SOURCE"
 	--with-passprompt="[sudo] password for %p: " \
 	--with-sssd \
 	--with-insults \
-	--with-all-insults
-
+	--with-all-insults \
+	--enable-tmpfiles.d=%{_tmpfilesdir}
 %make_build
 
 %install
