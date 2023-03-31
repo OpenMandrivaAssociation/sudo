@@ -4,7 +4,7 @@
 Summary:	Allows command execution as root for specified users
 Name:		sudo
 Version:	1.9.13p2
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
