@@ -3,8 +3,8 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.9.13p2
-Release:	2
+Version:	1.9.13p3
+Release:	1
 License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
@@ -77,8 +77,7 @@ export CFLAGS="%{optflags} -Oz -D_GNU_SOURCE"
 	--with-secure-path="%{_sbindir}:/sbin:%{_bindir}:/bin:/usr/local/sbin:/usr/local/bin" \
 	--with-passprompt="[sudo] password for %p: " \
 	--with-sssd \
-	--with-insults \
-	--with-all-insults \
+	--without-insults \
 	--enable-tmpfiles.d=%{_tmpfilesdir}
 %make_build
 
