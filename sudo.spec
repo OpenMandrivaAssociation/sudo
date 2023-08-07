@@ -4,7 +4,7 @@
 Summary:	Allows command execution as root for specified users
 Name:		sudo
 Version:	1.9.14p3
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		System/Base
 URL:		http://www.sudo.ws/sudo
@@ -19,7 +19,7 @@ BuildRequires:	autoconf-archive
 BuildRequires:	bison
 BuildRequires:	groff-for-man
 BuildRequires:	pkgconfig(libcap)
-BuildRequires:	openldap-devel
+BuildRequires:	pkgconfig(ldap)
 BuildRequires:	pam-devel
 BuildRequires:	systemd-rpm-macros
 
