@@ -3,7 +3,7 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.9.15
+Version:	1.9.15p1
 Release:	1
 License:	GPLv2+
 Group:		System/Base
