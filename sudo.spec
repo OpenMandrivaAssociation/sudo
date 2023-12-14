@@ -3,7 +3,7 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.9.15p2
+Version:	1.9.15p3
 Release:	1
 License:	GPLv2+
 Group:		System/Base
@@ -14,7 +14,7 @@ Source2:	sudo.pamd
 Source3:	sudo-1.7.4p4-sudoers
 Patch2:		sudo-1.7.2p1-envdebug.patch
 # For visudo
-Suggests:	vim
+Suggests:	neovim
 BuildRequires:	autoconf-archive
 BuildRequires:	bison
 BuildRequires:	groff-for-man
