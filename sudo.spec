@@ -3,12 +3,12 @@
 
 Summary:	Allows command execution as root for specified users
 Name:		sudo
-Version:	1.9.15p3
+Version:	1.9.15p5
 Release:	1
 License:	GPLv2+
 Group:		System/Base
-URL:		http://www.sudo.ws/sudo
-Source0:	http://www.sudo.ws/sudo/dist/%{name}-%{version}.tar.gz
+URL:		https://www.sudo.ws/sudo
+Source0:	https://www.sudo.ws/sudo/dist/%{name}-%{version}.tar.gz
 Source1:	%{name}.rpmlintrc
 Source2:	sudo.pamd
 Source3:	sudo-1.7.4p4-sudoers
