@@ -4,14 +4,16 @@
 Summary:	Allows command execution as root for specified users
 Name:		sudo
 Version:	1.9.16p2
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		System/Base
-URL:		https://www.sudo.ws/sudo
-Source0:	https://www.sudo.ws/sudo/dist/%{name}-%{version}.tar.gz
+URL:		https://www.sudo.ws/
+Source0:	https://www.sudo.ws/dist/%{name}-%{version}.tar.gz
 Source1:	%{name}.rpmlintrc
 Source2:	sudo.pamd
 Source3:	sudo-1.7.4p4-sudoers
+# Keep environment variables relevant to Qt, Desktops and Wayland
+Patch0:		sudo-1.9.16p2-keepenv.patch
 Patch2:		sudo-1.7.2p1-envdebug.patch
 # For visudo
 Suggests:	neovim

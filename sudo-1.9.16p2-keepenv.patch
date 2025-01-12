@@ -1,0 +1,33 @@
+diff -up sudo-1.9.16p2/plugins/sudoers/env.c.omv~ sudo-1.9.16p2/plugins/sudoers/env.c
+--- sudo-1.9.16p2/plugins/sudoers/env.c.omv~	2025-01-12 17:19:11.258688341 +0100
++++ sudo-1.9.16p2/plugins/sudoers/env.c	2025-01-12 17:22:49.255076165 +0100
+@@ -215,16 +215,29 @@ static const char *initial_checkenv_tabl
+  */
+ static const char *initial_keepenv_table[] = {
+     "COLORS",
++    "DESKTOP_SESSION",
+     "DISPLAY",
++    "GNOME_DESKTOP_SESSION_ID",
+     "HOSTNAME",
++    "KDE_FULL_SESSION",
++    "KDE_SESSION_VERSION",
+     "KRB5CCNAME",
+     "LS_COLORS",
+     "PATH",
+     "PS1",
+     "PS2",
++    "QT_QPA_PLATFORM",
++    "QT_QPA_PLATFORMTHEME",
++    "QT_STYLE_OVERRIDE",
++    "QT_WAYLAND_FORCE_DPI",
++    "QT_XCB_FORCE_SOFTWARE_OPENGL",
++    "WAYLAND_DISPLAY",
+     "XAUTHORITY",
+     "XAUTHORIZATION",
+     "XDG_CURRENT_DESKTOP",
++    "XDG_RUNTIME_DIR",
++    "XDG_SESSION_DESKTOP",
++    "XDG_SESSION_TYPE",
+     NULL
+ };
+ 
