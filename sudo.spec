@@ -17,6 +17,10 @@ Patch0:		sudo-1.9.16p2-keepenv.patch
 Patch2:		sudo-1.7.2p1-envdebug.patch
 # For visudo
 Suggests:	neovim
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	autoconf-archive
 BuildRequires:	bison
 BuildRequires:	groff-for-man
