@@ -62,7 +62,10 @@ find -name "Makefile.*" | xargs sed -i -e "s|-m 0444|-m 0644|g;s|configure.in|co
 
 %build
 %serverbuild
-export CFLAGS="%{optflags} -Oz -D_GNU_SOURCE"
+# slibtool puts the non-PIC term.o into libsudo_util.a and links that
+# archive into sudoers.so. LoongArch lld rejects R_LARCH_PCALA_LO12
+# against globals such as sudo_term_eof. --with-pic does not reach slibtool.
+export CFLAGS="%{optflags} -Oz -D_GNU_SOURCE -fPIC"
 
 %configure \
 	--without-rpath \
